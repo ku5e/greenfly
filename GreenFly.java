@@ -1,4 +1,4 @@
-/**
+﻿/**
  *
  * @author amos
 
@@ -65,7 +65,7 @@ At the end of day 8 there will be 129 greenfly (original + 8 × 8 offspring + 64
         int totalParents = calculateParents(day);
         int matureOffSprings = 0;
         int immatureOffSprings = 0;
-        for (int i =0; i < day+1; i++){
+        for (int i = 1; i < day+1; i++){
             if(i>7)
                 matureOffSprings += calculateOffsprings(i-7);  
             immatureOffSprings += calculateParents(i)*8;            
