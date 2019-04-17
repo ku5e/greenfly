@@ -1,13 +1,11 @@
-﻿/**
+/**
  *
- * @author amos
+ * @author ku5e
 
-This is a Java version of the file found https://github.com/njkamau/The-greenfly-problem/greenfly.py. 
-Thanks to @njkamau for developing the Python version of the code.
+This is a recursive Java version of the file found https://github.com/amoswachanga/greenfly/edit/master/GreenFly.java.
+Thanks to @amoswachanga for developing the Java version of the code.
 
  */
-public class Question1 {
-
     /**
      * @param args the command line arguments
      */
@@ -33,52 +31,19 @@ At the end of day 8 there will be 129 greenfly (original + 8 × 8 offspring + 64
 * Day 8 = 9*8+57 = ((1+(1*8)) * 8) + 57 = 129
 * Day 9 = 17*8+129 =((1+(2*8)) * 8) + 129 = 265
 * 
-     * @param day
+     * @param days
      */
     
-    public static int calculateParents(int day){
-        int numberOfWeeks = (day - 1)/7;
-        
-        //System.out.println("Number of Weeks "+numberOfWeeks);
-        
-        if (day <= 7){
-            return 1;
-        }else{            
-            int numberOfDaysForTheWeek = 7*numberOfWeeks;   
-            
-            int v = (int) (Math.pow(8, numberOfWeeks) * (day-numberOfDaysForTheWeek)); 
-            
-                        
-            return (calculateParents(numberOfDaysForTheWeek)+ v);
-        }
-        
-    }
-    
-    public static int calculateOffsprings(int day){
-        return calculateParents(day)*8;
-    }
-    
-    public static int calculateTotal(int day){
-        int totalParents = calculateParents(day);
-        int matureOffSprings = 0;
-        int immatureOffSprings = 0;
-        for (int i = 1; i < day+1; i++){
-            if(i>7)
-                matureOffSprings += calculateOffsprings(i-7);  
-            immatureOffSprings += calculateParents(i)*8;            
-        }
-        int cummulativeOffSprings = immatureOffSprings - matureOffSprings;
-        int totalGreenFlies = cummulativeOffSprings + totalParents;
-        
-        return totalGreenFlies;
-    }
-    
-    public static void main(String[] args) {
-        
-        for (int i = 0; i < 30; i++) {
-            System.out.println("Total number of Greenflies on day "+(i+1)+" is "+calculateTotal(i));            
-        }
-        
-    }
-    
+class GreenFly {
+	public static void main(String[] args) {
+		int days = 28;
+		System.out.println("There will be " + greenFly(days) + " at the end of " + days + " days.");
+	}
+	public static int greenFly(int days){
+		if(days > 0){
+			return greenFly(days - 1) + (greenFly(days - 7) * 8);
+		}else{
+			return 1;
+		}
+	}
 }
